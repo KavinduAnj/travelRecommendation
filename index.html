@@ -82,15 +82,22 @@
         .social-links a { color: white; font-size: 1.5rem; }
 
         /* --- Search Results Section --- */
+/* --- Search Results Section --- */
+        /* Style the new container section */
+        #recommendations {
+            background-color: #f4f4f4; /* A light background for contrast */
+            min-height: 50vh; /* Give it some space */
+            padding-top: 40px;
+            padding-bottom: 40px;
+        }
+
         #results-container {
             display: flex;
             flex-wrap: wrap;
             justify-content: center;
             gap: 20px;
             padding: 20px;
-            width: 100%; 
-            max-height: 50vh;
-            overflow-y: auto;
+            width: 100%;
         }
         .result-card {
             background-color: white;
@@ -152,7 +159,6 @@
             <a href="#" class="cta-button">BOOK NOW</a>
         </div>
 
-        <div id="results-container"></div>
         
         <div class="social-links">
             <a href="#"><i class="fab fa-twitter"></i></a>
@@ -161,6 +167,10 @@
             <a href="#"><i class="fab fa-youtube"></i></a>
         </div>
     </main>
+     <section id="recommendations" class="content-section">
+        <div id="results-container">
+            </div>
+    </section>
 
     <section id="about" class="content-section">
         <h2>ABOUT US</h2>
