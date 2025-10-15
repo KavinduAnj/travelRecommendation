@@ -82,37 +82,38 @@
         .social-links a { color: white; font-size: 1.5rem; }
 
         /* --- Search Results Section --- */
-/* --- Search Results Section --- */
-        /* Style the new container section */
-        #recommendations {
-            background-color: #f4f4f4; /* A light background for contrast */
-            min-height: 50vh; /* Give it some space */
-            padding-top: 40px;
-            padding-bottom: 40px;
-        }
 
-        #results-container {
+       #results-container {
+            position: absolute;
+            bottom: 30px; 
+            left: 50%;
+            transform: translateX(-50%);
+            width: 90%;
+            max-width: 1000px;
             display: flex;
-            flex-wrap: wrap;
+            flex-wrap: nowrap;
             justify-content: center;
             gap: 20px;
             padding: 20px;
-            width: 100%;
+            overflow-x: auto; 
+            background: rgba(0, 0, 0, 0.4); 
+            border-radius: 15px;
+            box-sizing: border-box;
         }
         .result-card {
             background-color: white;
             border-radius: 8px;
             box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-            width: 300px;
+            min-width: 300px;
             text-align: left;
             color: #333;
             padding-bottom: 15px;
+            flex-shrink: 0; 
         }
         .result-card img { width: 100%; height: 180px; object-fit: cover; border-top-left-radius: 8px; border-top-right-radius: 8px; }
         .result-card h3 { margin: 15px; font-size: 1.2rem; }
         .result-card p { margin: 0 15px 15px 15px; font-size: 0.9rem; }
         .visit-button { background-color: #00bcd4; color: white; border: none; padding: 10px 20px; margin-left: 15px; border-radius: 5px; cursor: pointer; font-weight: bold; }
-        
         /* --- Other Content Sections --- */
         .content-section { padding: 80px 20px; text-align: center; }
         .content-section h2 { font-size: 3rem; text-transform: uppercase; margin-bottom: 20px; }
@@ -158,7 +159,8 @@
             </p>
             <a href="#" class="cta-button">BOOK NOW</a>
         </div>
-
+        <div id="results-container">
+            </div>
         
         <div class="social-links">
             <a href="#"><i class="fab fa-twitter"></i></a>
@@ -167,10 +169,7 @@
             <a href="#"><i class="fab fa-youtube"></i></a>
         </div>
     </main>
-     <section id="recommendations" class="content-section">
-        <div id="results-container">
-            </div>
-    </section>
+
 
     <section id="about" class="content-section">
         <h2>ABOUT US</h2>
