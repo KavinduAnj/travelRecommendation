@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TravelBloom - Your Dream Destination</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    
+    <style>
+        /* General body styling */
+        html {
+            scroll-behavior: smooth;
+        }
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            color: #333;
+        }
+
+        /* --- Navbar Styles --- */
+        .navbar {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            background-color: #2a3d45;
+            padding: 10px 30px;
+            color: white;
+            position: fixed;
+            width: calc(100% - 60px);
+            top: 0;
+            left: 0;
+            z-index: 1000;
+        }
+        .logo-container { display: flex; align-items: center; }
+        .logo { height: 40px; margin-right: 10px; }
+        .brand-name { font-size: 24px; font-weight: bold; color: white; text-decoration: none; }
+        .nav-links { list-style: none; display: flex; margin: 0; padding: 0; }
+        .nav-links li { margin: 0 15px; }
+        .nav-links a { color: #cccccc; text-decoration: none; font-size: 16px; }
+        .search-form { display: flex; align-items: center; }
+        .search-container { position: relative; display: flex; align-items: center; }
+        .search-icon { position: absolute; left: 15px; color: #aaa; }
+        #searchInput { padding: 8px 15px 8px 40px; border-radius: 20px; border: 1px solid #555; background-color: #3e5058; color: white; width: 250px; }
+        .search-button, .clear-button { padding: 8px 15px; margin-left: 10px; border-radius: 5px; border: none; cursor: pointer; font-size: 14px; }
+        #btnSearch { background-color: #4CAF50; color: white; }
+        #btnClear { background-color: #f1f1f1; color: #333; }
+
+        /* --- Hero Section Styles --- */
+        .hero {
+            position: relative;
+            height: 100vh;
+            display: flex;
+            flex-direction: column; /* Allow content to stack vertically */
+            align-items: center;
+            justify-content: center;
+            color: white;
+            text-align: center;
+            padding-top: 80px;
+            box-sizing: border-box;
+        }
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: url('https://images.unsplash.com/photo-1485871981521-5b1fd3805eee?q=80&w=2070&auto=format&fit=crop');
+            background-size: cover;
+            background-position: center;
+            filter: brightness(0.6);
+            z-index: -1;
+        }
+        .hero-content { z-index: 2; max-width: 800px; padding: 20px; }
+        .hero-content h1 { font-size: 4rem; text-transform: uppercase; margin-bottom: 20px; }
+        /* RESTORED: Description paragraph styling */
+        .hero-content p { font-size: 1.1rem; color: #e0e0e0; max-width: 500px; margin: 0 auto 30px auto; }
+        /* RESTORED: 'Book Now' button styling */
+        .cta-button { background-color: #00bcd4; color: white; padding: 12px 25px; text-decoration: none; font-weight: bold; border-radius: 5px; }
+
+        /* RESTORED: Social media icons styling */
+        .social-links { position: absolute; left: 30px; top: 50%; transform: translateY(-50%); z-index: 2; display: flex; flex-direction: column; gap: 15px; }
+        .social-links a { color: white; font-size: 1.5rem; }
+
+        /* --- Search Results Section --- */
+        #results-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 20px;
+            padding: 20px;
+            width: 100%; /* Ensure it takes available width */
+            max-height: 50vh;
+            overflow-y: auto;
+        }
+        .result-card {
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            width: 300px;
+            text-align: left;
+            color: #333;
+            padding-bottom: 15px;
+        }
+        .result-card img { width: 100%; height: 180px; object-fit: cover; border-top-left-radius: 8px; border-top-right-radius: 8px; }
+        .result-card h3 { margin: 15px; font-size: 1.2rem; }
+        .result-card p { margin: 0 15px 15px 15px; font-size: 0.9rem; }
+        .visit-button { background-color: #00bcd4; color: white; border: none; padding: 10px 20px; margin-left: 15px; border-radius: 5px; cursor: pointer; font-weight: bold; }
+        
+        /* --- Other Content Sections --- */
+        .content-section { padding: 80px 20px; text-align: center; }
+        .content-section h2 { font-size: 3rem; text-transform: uppercase; margin-bottom: 20px; }
+        .content-section p.subtitle { max-width: 800px; margin: 0 auto 40px auto; line-height: 1.6; font-size: 1.1rem; }
+        
+        .team-section { background-color: #2a3d45; color: white; }
+        .team-container { display: flex; justify-content: center; gap: 30px; flex-wrap: wrap; }
+        .team-member { background-color: #3e5058; padding: 25px; border-radius: 10px; width: 280px; }
+        .team-member img { width: 100px; height: 100px; border-radius: 50%; object-fit: cover; border: 3px solid white; margin-bottom: 15px; }
+        
+        .contact-form { max-width: 600px; margin: 30px auto 0 auto; display: flex; flex-direction: column; gap: 15px; }
+        .contact-form input, .contact-form textarea { width: 100%; padding: 15px; border-radius: 5px; border: 1px solid #ddd; font-size: 1rem; box-sizing: border-box; }
+        .contact-form button { background-color: #00bcd4; color: white; padding: 15px 20px; border: none; border-radius: 5px; cursor: pointer; font-size: 1rem; }
+    </style>
+</head>
+<body>
+
+    <nav class="navbar">
+        <div class="logo-container">
+            <img src="https://i.imgur.com/r3v5w2V.png" alt="TravelBloom Logo" class="logo">
+            <a href="#" class="brand-name">TravelBloom</a>
+        </div>
+        <ul class="nav-links">
+            <li><a href="#">Home</a></li>
+            <li><a href="#about">About Us</a></li>
+            <li><a href="#contact">Contact Us</a></li>
+        </ul>
+        <form class="search-form" onsubmit="event.preventDefault();">
+            <div class="search-container">
+                <i class="fas fa-search search-icon"></i>
+                <input type="text" id="searchInput" placeholder="Enter a destination or keyword">
+            </div>
+            <button type="button" id="btnSearch" class="search-button">Search</button>
+            <button type="button" id="btnClear" class="clear-button">Clear</button>
+        </form>
+    </nav>
+
+    <main class="hero">
+        <div class="hero-content">
+            <h1>Explore Dream Destination</h1>
+            <p>
+                It encourages exploration of unfamiliar territories, embracing diverse cultures and landscapes, while pursuing the desired destination that captivates the heart and ignites a sense of wonder.
+            </p>
+            <a href="#" class="cta-button">BOOK NOW</a>
+        </div>
+
+        <div id="results-container"></div>
+        
+        <div class="social-links">
+            <a href="#"><i class="fab fa-twitter"></i></a>
+            <a href="#"><i class="fab fa-facebook-f"></i></a>
+            <a href="#"><i class="fab fa-instagram"></i></a>
+            <a href="#"><i class="fab fa-youtube"></i></a>
+        </div>
+    </main>
+
+    <section id="about" class="content-section">
+        <h2>ABOUT US</h2>
+        <p class="subtitle">Welcome to Our Company! We are a team of passionate individuals dedicated to providing the best travel experiences. Our mission is to help you explore different destinations around the world, embracing diverse cultures and landscapes.</p>
+    </section>
+
+    <section id="team" class="content-section team-section">
+        <h2>Our Team</h2>
+        <div class="team-container">
+             <div class="team-member"><img src="https://i.imgur.com/MV2c44Y.jpg" alt="CEO"><h3>John Doe</h3><p>CEO</p></div>
+            <div class="team-member"><img src="https://i.imgur.com/pds83NN.jpg" alt="Team Lead"><h3>Celina Thomas</h3><p>Team Lead</p></div>
+            <div class="team-member"><img src="https://i.imgur.com/DUREa9S.jpg" alt="Delivery Head"><h3>Mike Tysen</h3><p>Delivery Head</p></div>
+        </div>
+    </section>
+
+    <section id="contact" class="content-section">
+        <h2>CONTACT US</h2>
+        <p class="subtitle">Get in touch. We would love to hear from you.</p>
+        <form class="contact-form" action="#" method="POST">
+            <input type="text" name="name" placeholder="Name" required>
+            <input type="email" name="email" placeholder="Email" required>
+            <textarea name="message" rows="5" placeholder="Message" required></textarea>
+            <button type="submit">Submit</button>
+        </form>
+    </section>
+    
+    <script src="travel_recommendation.js"></script>
+</body>
+</html>
